@@ -1,5 +1,6 @@
 import {useEffect} from 'react';
 import { motion, useScroll, useSpring } from "motion/react"
+import { Analytics } from '@vercel/analytics/react';
 import { useInView } from 'react-intersection-observer';
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import { Card } from "@/components/ui/card.tsx";
@@ -326,6 +327,7 @@ function App() {
                     </div>
                 </div>
             </motion.section>
+            <Analytics />
         </div>
     );
 }

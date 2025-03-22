@@ -63,12 +63,13 @@ export default function Experience() {
                     <h1 className={"text-4xl"}>Bodo.ai</h1>
                     <CardTitle className={"text-gray-400"}>Senior DevOps & Full Stack Engineer</CardTitle>
                     <CardContent>
-                        <ul className="list-disc marker:text-white leading-6 list-outside space-y-4">
-                            <li className="group/item">Developed backend APIs using TypeScript and the NestJS framework for core features of the platform</li>
-                            <li>Developed and maintained Terraform code for both the platform features and infrastructure architecture</li>
-                            <li>Built CI/CD pipelines with GitHub Actions, improving deployment efficiency by 30%.</li>
-                            <li>Managed the Kubernetes infrastructure where the platform was deployed, ensuring high availability and scalability</li>
-                            <li>Solely led front-end development using React which included code refactoring for reducing technical debt,
+                        <ul className="list-disc marker:text-white leading-6 list-outside space-y-4 text-gray-300">
+                            <li>Developed backend APIs using <b>TypeScript</b> and the <b>NestJS</b> framework for core features of the platform</li>
+                            <li>Developed and maintained <b>Terraform code</b> for both the platform features and infrastructure architecture</li>
+                            <li>Built CI/CD pipelines with <b>GitHub Actions</b>, improving deployment efficiency by 30%.</li>
+                            <li>Managed the <b>Kubernetes</b> infrastructure where the platform was deployed, ensuring high availability and scalability</li>
+                            <li>Worked with Apple on deploying Bodo on <b>EKS clusters</b> with reducing the computation time by 10x</li>
+                            <li>Solely led front-end development using <b>React</b> which included code refactoring for reducing technical debt,
                                 developed features and ensured reliability.
                             </li>
                             <li>Reduced the startup time of EC2 instances from 10 minutes to 2 minutes by better optimization of shell scripting</li>
@@ -110,8 +111,8 @@ export default function Experience() {
                     <h1 className={"text-4xl"}>Ninjacart</h1>
                     <CardTitle className={"text-gray-400"}>Software Development Engineer (SDE) - 1</CardTitle>
                     <CardContent>
-                        <ul className="list-disc marker:text-white leading-6 list-outside space-y-4">
-                            <li className="group/item">Contributed to the development of backend API applications using Java Spring Boot framework.</li>
+                        <ul className="list-disc marker:text-white leading-6 list-outside space-y-4 text-gray-300">
+                            <li>Contributed to the development of backend API applications using <b>Java Spring Boot</b> framework.</li>
                             <li>Built and maintained CI/CD pipelines to streamline the development and deployment processes which ensured efficient and
                                 automated delivery of applications.
                             </li>
@@ -153,13 +154,13 @@ export default function Experience() {
                     <h1 className={"text-4xl"}>Wipro (Apple Client)</h1>
                     <CardTitle className={"text-gray-400"}>Software Engineer</CardTitle>
                     <CardContent>
-                        <ul className="list-disc marker:text-white leading-6 list-outside space-y-4">
-                            <li>Contributed to a project leveraging graph database technology ArangoDB to generate demand planning for
-                                components across multiple vendors for Apple using Python and Dash</li>
-                            <li>mproved demand planning accuracy by leveraging ArangoDB for real-time data insights.
+                        <ul className="list-disc marker:text-white leading-6 list-outside space-y-4 text-gray-300">
+                            <li>Contributed to a project leveraging graph database technology <b>ArangoDB</b> to generate demand planning for
+                                components across multiple vendors for <b>Apple using Python and Dash</b></li>
+                            <li>Improved demand planning accuracy by leveraging ArangoDB for real-time data insights.
                             </li>
-                            <li>Developed the API using FAST API python which sends the information to the React application</li>
-                            <li>Deployed CI/CD pipelines for seamless application deployment in Kubernetes clusters</li>
+                            <li>Developed the API using <b>Fast API</b> python which sends the information to the <b>React</b> application</li>
+                            <li>Deployed CI/CD pipelines for seamless application deployment in <b>Kubernetes</b> clusters</li>
                         </ul>
                     </CardContent>
                     <CardFooter>
@@ -197,14 +198,14 @@ export default function Experience() {
                 <Card className={"bg-gray-800 border-0 p-0 shadow-none"}>
                     <CardTitle className={"text-3xl"}>Freelance DevOps Engineer</CardTitle>
                     <CardContent>
-                        <ul className="list-disc marker:text-white leading-6 list-outside space-y-4">
-                            <li> Migrated multiple applications (3 WordPress sites and 7 Laravel projects) to Google Cloud
+                        <ul className="list-disc marker:text-white leading-6 list-outside space-y-4 text-gray-300">
+                            <li> Migrated multiple applications <b>(3 WordPress sites and 7 Laravel projects)</b> to <b>Google Cloud</b>
                                 and migrated SQL server to CloudSQL which improved the application reliability and scalability
                             </li>
-                            <li>Reduced deployment time by 40% using Jenkins CI/CD pipelines
+                            <li>Reduced deployment time by 40% using <b>Jenkins</b> CI/CD pipelines
                             </li>
-                            <li>Deployed 6 microservices on AWS EKS with automated CI/CD pipelines, ensuring seamless updates</li>
-                            <li>Integrated 20 Google Cloud Functions with Google Cloud API Gateway for efficient request routing and security purposes</li>
+                            <li>Deployed 6 microservices on <b>AWS EKS</b> with automated CI/CD pipelines, ensuring seamless updates</li>
+                            <li>Integrated 20 <b>Google Cloud Functions</b> with Google Cloud API Gateway for efficient request routing and security purposes</li>
                         </ul>
                     </CardContent>
                     <CardFooter>
