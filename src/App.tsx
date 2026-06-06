@@ -10,6 +10,7 @@ import {
   faPaperPlane,
   faAward,
   faTrophy,
+  faDiagramProject,
 } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -62,6 +63,49 @@ function App() {
     threshold: 0.1,
   });
 
+  const [projectsRef, projectsInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const projects = [
+    {
+      title: "Go Cluster Orchestration Agent",
+      context: "Bodo.ai",
+      description:
+        "A Go agent that bootstraps 100+ EC2 instance clusters with leader election, sequential setup coordination (NVMe, AWS config), and status reporting, replacing user_data scripts that broke above 50 nodes.",
+      tech: ["Go", "AWS", "EC2"],
+    },
+    {
+      title: "SSM Access CLI",
+      context: "Hey Amara",
+      description:
+        "A Python CLI for secure, credential-free access to RDS, Redis, and RabbitMQ over AWS SSM tunneling, eliminating bastion hosts and manual credential management.",
+      tech: ["Python", "AWS SSM", "RDS"],
+    },
+    {
+      title: "SOC 2 Type II Certification",
+      context: "Bodo.ai",
+      description:
+        "Led the compliance initiative across infrastructure hardening, security auditing, environment segregation, and audit-readiness for an enterprise SaaS platform.",
+      tech: ["SOC 2", "IAM", "Security"],
+    },
+    {
+      title: "Demand Planning System",
+      context: "Wipro (Apple)",
+      description:
+        "A data pipeline using ArangoDB and Python to improve supply-chain forecast accuracy across vendor teams, feeding live data to React dashboards used daily.",
+      tech: ["Python", "ArangoDB", "React"],
+    },
+    {
+      title: "Multi-Tenant JupyterHub Platform",
+      context: "Bodo.ai",
+      description:
+        "Replaced costly EC2-per-tenant JupyterLab with JupyterHub on EKS, building custom auth (Frontegg), custom CRDs for per-user pod lifecycle, and chroot-jailed containers for tenant isolation.",
+      tech: ["JupyterHub", "EKS", "Frontegg"],
+    },
+  ];
+
   const awards = [
     {
       icon: faTrophy,
@@ -103,15 +147,42 @@ function App() {
           >
             Sai Pavan Nunna
           </TypingAnimation>
-          <p className="text-xl text-blue-400 mb-16">
-            Senior DevOps Engineer & Full Stack Developer
+          <p className="text-xl text-blue-400 mb-6">
+            Senior DevOps & Site Reliability Engineer
+          </p>
+          <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-10">
+            I design and operate cloud-native infrastructure at scale,
+            architecting AWS &amp; Kubernetes platforms from scratch, automating
+            delivery end to end, and making systems observable, secure, and
+            cost-efficient.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-10 mb-16">
+            {[
+              { value: "7+", label: "Years Experience" },
+              { value: "4", label: "Cloud Certifications" },
+              { value: "75%", label: "Faster Deployments" },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center px-2">
+                <div className="text-3xl md:text-4xl font-bold text-blue-400">
+                  {stat.value}
+                </div>
+                <div className="text-xs md:text-sm text-gray-400 mt-1">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-16">
             {[
               {
                 title: "CKA",
                 img: "https://images.credly.com/size/680x680/images/8b8ed108-e77d-4396-ac59-2504583b9d54/cka_from_cncfsite__281_29.png",
+              },
+              {
+                title: "CKAD",
+                img: "https://images.credly.com/size/680x680/images/cc8adc83-1dc6-4d57-8e20-22171247e052/blob",
               },
               {
                 title: "AWS",
@@ -121,29 +192,40 @@ function App() {
                 title: "GCP",
                 img: "https://images.credly.com/size/680x680/images/71c579e0-51fd-4247-b493-d2fa8167157a/image.png",
               },
-              // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            ].map((cert, _) => (
-              <Card className={"py-0"}>
+            ].map((cert) => (
+              <Card key={cert.title} className={"py-0"}>
                 <MagicCard className={"bg-gray-800/50 rounded-xl"}>
                   <img
                     src={cert.img}
                     alt={cert.title}
-                    className="w-60 h-60 mx-auto object-contain rounded-xl p-8"
+                    className="w-40 h-40 md:w-48 md:h-48 mx-auto object-contain rounded-xl p-6"
                   />
                 </MagicCard>
               </Card>
             ))}
           </div>
 
-          <motion.button
-            onClick={scrollToContact}
-            className="relative px-8 py-3 bg-blue-600 text-white rounded-full font-semibold overflow-hidden group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="relative z-10">Connect with me</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </motion.button>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <motion.button
+              onClick={scrollToContact}
+              className="relative px-8 py-3 bg-blue-600 text-white rounded-full font-semibold overflow-hidden group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative z-10">Connect with me</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </motion.button>
+            <motion.a
+              href="/SaiPavan_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 border border-blue-500/60 text-blue-300 rounded-full font-semibold hover:bg-blue-500/10 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Download Resume
+            </motion.a>
+          </div>
         </div>
       </motion.section>
 
@@ -160,53 +242,55 @@ function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           {[
             {
-              title: "DevOps & Cloud",
+              title: "Cloud & Containers",
               icons: [
-                "https://skillicons.dev/icons?i=aws,gcp,azure,kubernetes",
+                "https://skillicons.dev/icons?i=aws,gcp,azure,kubernetes,docker",
               ],
               skills: [
-                "AWS",
-                "Google Cloud",
-                "Azure",
-                "Kubernetes (GKE, AKS, EKS)",
-                "Docker",
-                "Git",
+                "AWS (EKS, RDS Aurora, Lambda, SQS/SNS)",
+                "GCP & Azure",
+                "Kubernetes (EKS, GKE, AKS)",
+                "Docker, Fargate & ECS",
+                "KEDA & Karpenter autoscaling",
               ],
             },
             {
-              title: "Tools & Automation",
+              title: "IaC & CI/CD",
               icons: [
-                "https://skillicons.dev/icons?i=terraform,jenkins,prometheus,bash",
+                "https://skillicons.dev/icons?i=terraform,ansible,githubactions,jenkins,gitlab",
               ],
               skills: [
                 "Terraform & Ansible",
-                "Helm",
-                "Spinnaker",
-                "Jenkins & GitHub Actions",
-                "Monitoring & Logging",
-                "Shell Scripting",
+                "Helm & Helmfile",
+                "GitHub Actions (semantic-release)",
+                "Jenkins & GitLab CI",
+                "GitOps & SOPS secrets",
               ],
             },
             {
-              title: "Languages & Runtimes",
+              title: "Observability & Security",
               icons: [
-                "https://skillicons.dev/icons?i=python,java,golang,javascript,typescript",
-              ],
-              skills: ["Python", "Java", "GoLang", "JavaScript", "TypeScript"],
-            },
-            {
-              title: "Frameworks & Databases",
-              icons: [
-                "https://skillicons.dev/icons?i=react,spring,nestjs,postgres,redis  ",
+                "https://skillicons.dev/icons?i=grafana,prometheus,elasticsearch",
               ],
               skills: [
-                "Dash",
-                "Spring Boot",
-                "React",
-                "NestJS",
-                "PostgreSQL",
-                "MySQL",
-                "Redis",
+                "Grafana, Loki, Tempo, Alloy",
+                "Prometheus & OpenTelemetry",
+                "ELK & CloudWatch",
+                "SOC 2 Type II",
+                "IAM/IRSA & KMS hardening",
+              ],
+            },
+            {
+              title: "Languages & Frameworks",
+              icons: [
+                "https://skillicons.dev/icons?i=python,go,typescript,nestjs,react",
+              ],
+              skills: [
+                "Python, Go & Bash",
+                "TypeScript / JavaScript",
+                "NestJS & FastAPI",
+                "React & Next.js",
+                "PostgreSQL, Redis & RabbitMQ",
               ],
             },
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -243,6 +327,54 @@ function App() {
         <h2 className="text-4xl font-bold text-center mb-12">Experience</h2>
         <Experience />
       </motion.section>
+
+      <motion.section
+        ref={projectsRef}
+        initial={{ opacity: 0, y: 20 }}
+        animate={projectsInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="py-20 px-4"
+      >
+        <h2 className="text-4xl font-bold text-center mb-12">Key Projects</h2>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <motion.div
+              key={project.title}
+              className="magic-card border-beam bg-gray-800/50 p-6 rounded-lg flex flex-col"
+              whileHover={{ scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-blue-500/20 text-blue-400 p-3 rounded-lg">
+                  <FontAwesomeIcon icon={faDiagramProject} size={"lg"} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold leading-tight">
+                    {project.title}
+                  </h3>
+                  <span className="text-sm text-blue-400">
+                    {project.context}
+                  </span>
+                </div>
+              </div>
+              <p className="text-gray-300 mb-4 leading-relaxed">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2 mt-auto">
+                {project.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="text-xs bg-gray-700/60 text-gray-200 px-3 py-1 rounded-full"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
       <motion.section
         ref={awardsRef}
         initial={{ opacity: 0, y: 20 }}
@@ -260,9 +392,9 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={awardsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="relative group"
+              className="relative group h-full"
             >
-              <div className="relative bg-gray-800 p-6 rounded-lg transform group-hover:translate-y-[-5px] transition-transform">
+              <div className="relative h-full bg-gray-800 p-6 rounded-lg transform group-hover:translate-y-[-5px] transition-transform">
                 <div className="absolute -top-6 left-6">
                   <div className="bg-blue-500 p-3 rounded-lg shadow-lg">
                     <FontAwesomeIcon
@@ -306,8 +438,8 @@ function App() {
               {
                 icon: faPaperPlane,
                 title: "Email",
-                text: "saipavan9999@yahoo.com",
-                href: "mailto:saipavan9999@yahoo.com",
+                text: "saipavan991@gmail.com",
+                href: "mailto:saipavan991@gmail.com",
               },
               {
                 icon: faLinkedin,

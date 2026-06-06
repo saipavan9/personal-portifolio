@@ -13,10 +13,30 @@ import bodo from "../assets/bodo.jpeg";
 import ninjacart from "../assets/ninjacart.jpeg";
 import wipro from "../assets/wipro.jpeg";
 import freelancer from "../assets/freelancer.png";
+import heyamara from "../assets/heyamara.png";
+import mercor from "../assets/mercor.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationPin } from "@fortawesome/free-solid-svg-icons";
 
 export default function Experience() {
+  const heyAmaraIcons = [
+    { name: "AWS", src: "https://skillicons.dev/icons?i=aws" },
+    { name: "Kubernetes", src: "https://skillicons.dev/icons?i=kubernetes" },
+    { name: "Terraform", src: "https://skillicons.dev/icons?i=terraform" },
+    { name: "Docker", src: "https://skillicons.dev/icons?i=docker" },
+    { name: "GitHub Actions", src: "https://skillicons.dev/icons?i=github" },
+    { name: "Grafana", src: "https://skillicons.dev/icons?i=grafana" },
+    { name: "Prometheus", src: "https://skillicons.dev/icons?i=prometheus" },
+    { name: "Python", src: "https://skillicons.dev/icons?i=python" },
+  ];
+
+  const mercorIcons = [
+    { name: "Python", src: "https://skillicons.dev/icons?i=python" },
+    { name: "Docker", src: "https://skillicons.dev/icons?i=docker" },
+    { name: "Bash", src: "https://skillicons.dev/icons?i=bash" },
+    { name: "Linux", src: "https://skillicons.dev/icons?i=linux" },
+  ];
+
   const bodoIcons = [
     { name: "AWS", src: "https://skillicons.dev/icons?i=aws" },
     { name: "Azure", src: "https://skillicons.dev/icons?i=azure" },
@@ -61,7 +81,155 @@ export default function Experience() {
         contentArrowStyle={{
           borderRight: "7px solid  oklch(0.278 0.033 256.848)",
         }}
-        date="2022 - present"
+        date="Jul 2025 - present"
+        iconStyle={{ color: "#fff" }}
+        icon={
+          <img
+            src={heyamara}
+            alt="Hey Amara"
+            className="rounded-full object-cover mx-auto shadow-md"
+          />
+        }
+        intersectionObserverProps={{
+          triggerOnce: false,
+          rootMargin: "0px 0px -40px 0px",
+        }}
+      >
+        <Card className={"bg-gray-800 border-0 p-0 shadow-none"}>
+          <h1 className={"text-4xl"}>Hey Amara</h1>
+          <CardTitle className={"text-gray-400"}>
+            Senior DevOps Engineer
+            <div className="flex items-center gap-1 text-gray-400 mt-2">
+              <FontAwesomeIcon icon={faLocationPin} />
+              <span className={"ml-1"}>Remote (Karalee, Australia)</span>
+            </div>
+          </CardTitle>
+          <CardContent>
+            <ul className="list-disc marker:text-white leading-6 list-outside space-y-4 text-gray-300">
+              <li>
+                Architected the entire <b>AWS</b> platform from scratch with{" "}
+                <b>Terraform</b> covering compute, databases, messaging, auth,
+                and networking across dev and production, cutting provisioning
+                time from days to under 2 hours.
+              </li>
+              <li>
+                Migrated the whole platform from <b>ECS to EKS</b> and
+                introduced <b>GitOps</b> with Helm, Helmfile, an automated
+                deploy-bot, <b>KEDA</b> autoscaling, and <b>SOPS</b> secret
+                management.
+              </li>
+              <li>
+                Built CI/CD pipelines for every microservice using{" "}
+                <b>GitHub Actions</b> with semantic-release and ephemeral
+                preview environments with live DB seeding.
+              </li>
+              <li>
+                Deployed full-stack observability (<b>Grafana, Loki, Alloy,
+                Tempo, Prometheus</b>) to production, enabling end-to-end
+                distributed tracing and alerting across all services.
+              </li>
+              <li>
+                Built an internal <b>Python CLI</b> that securely tunnels
+                engineers into RDS, Redis, and RabbitMQ via SSM, removing manual
+                credential and bastion overhead.
+              </li>
+              <li>
+                Cut compute costs by <b>40%</b> with Fargate Spot, workload
+                right-sizing, and traffic-aligned autoscaling policies.
+              </li>
+            </ul>
+          </CardContent>
+          <CardFooter>
+            <div className="grid grid-cols-8 gap-2">
+              {heyAmaraIcons.map((item, index) => (
+                <div
+                  key={index}
+                  className="group flex flex-col rounded-1xl shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer"
+                >
+                  <img src={item.src} alt={item.name} className="w-16 h-16" />
+                  <div className="absolute bottom-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-900 text-white text-xs py-1 px-3 rounded-lg">
+                    {item.name}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardFooter>
+        </Card>
+      </VerticalTimelineElement>
+      <VerticalTimelineElement
+        className="vertical-timeline-element"
+        contentStyle={{
+          background: "oklch(0.278 0.033 256.848)",
+          color: "#fff",
+        }}
+        contentArrowStyle={{
+          borderRight: "7px solid  oklch(0.278 0.033 256.848)",
+        }}
+        date="Apr 2025 - Jul 2025"
+        iconStyle={{ color: "#fff" }}
+        icon={
+          <img
+            src={mercor}
+            alt="Mercor"
+            className="rounded-full object-cover mx-auto shadow-md"
+          />
+        }
+        intersectionObserverProps={{
+          triggerOnce: false,
+          rootMargin: "0px 0px -40px 0px",
+        }}
+      >
+        <Card className={"bg-gray-800 border-0 p-0 shadow-none"}>
+          <h1 className={"text-4xl"}>Mercor</h1>
+          <CardTitle className={"text-gray-400"}>
+            Senior Python Developer (Contract, x.AI / Grok)
+            <div className="flex items-center gap-1 text-gray-400 mt-2">
+              <FontAwesomeIcon icon={faLocationPin} />
+              <span className={"ml-1"}>Remote (California, USA)</span>
+            </div>
+          </CardTitle>
+          <CardContent>
+            <ul className="list-disc marker:text-white leading-6 list-outside space-y-4 text-gray-300">
+              <li>
+                Improved AI model training reliability by standardizing{" "}
+                <b>Python</b> environments across multiple ML repositories,
+                eliminating environment-related failures in build and
+                evaluation workflows.
+              </li>
+              <li>
+                Cut manual environment setup time by ~60% with modular{" "}
+                <b>Dockerfiles</b> and shell scripts that automated
+                containerized application provisioning and deployment.
+              </li>
+            </ul>
+          </CardContent>
+          <CardFooter>
+            <div className="grid grid-cols-8 gap-2">
+              {mercorIcons.map((item, index) => (
+                <div
+                  key={index}
+                  className="group flex flex-col rounded-1xl shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer"
+                >
+                  <img src={item.src} alt={item.name} className="w-16 h-16" />
+                  <div className="absolute bottom-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-900 text-white text-xs py-1 px-3 rounded-lg">
+                    {item.name}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardFooter>
+        </Card>
+      </VerticalTimelineElement>
+      <VerticalTimelineElement
+        className="vertical-timeline-element"
+        contentStyle={{
+          background: "oklch(0.278 0.033 256.848)",
+          color: "#fff",
+        }}
+        contentArrowStyle={{
+          borderRight: "7px solid  oklch(0.278 0.033 256.848)",
+        }}
+        date="2022 - 2025"
         iconStyle={{ color: "#fff" }}
         icon={
           <img
@@ -81,39 +249,37 @@ export default function Experience() {
             Senior DevOps & Full Stack Engineer
             <div className="flex items-center gap-1 text-gray-400 mt-2">
               <FontAwesomeIcon icon={faLocationPin} />
-              <span className={"ml-1"}>Remote (California, USA)</span>
+              <span className={"ml-1"}>Remote (Pittsburgh, USA)</span>
             </div>
           </CardTitle>
           <CardContent>
             <ul className="list-disc marker:text-white leading-6 list-outside space-y-4 text-gray-300">
-              <li>
-                Developed backend APIs using <b>TypeScript</b> and the{" "}
-                <b>NestJS</b> framework for core features of the platform
+              <li>Spearheaded multiple architecture revamps across backend APIs,
+                CI/CD pipelines, and infrastructure to improve scalability, maintainability, and developer velocity.
+              </li>
+              <li>Owned end-to-end development of critical backend modules using <b>NestJS and TypeScript</b>,
+                contributing to 40%+ of the codebase in key services.
               </li>
               <li>
-                Developed and maintained <b>Terraform code</b> for both the
-                platform features and infrastructure architecture
+                Led infrastructure optimization initiatives on <b>AWS EKS</b>, introducing dynamic scaling policies, spot instance usage to significantly reduce EC2 costs using Karpenter.
+              Collaborated directly with enterprise clients like Apple to deploy and maintain applications in secure, high-compliance environments.
               </li>
               <li>
-                Built CI/CD pipelines with <b>GitHub Actions</b>, improving
-                deployment efficiency by 30%.
+                Influenced key roadmap decisions on platform infrastructure and internal tooling, aligning with both engineering needs and business goals.
               </li>
               <li>
-                Managed the <b>Kubernetes</b> infrastructure where the platform
-                was deployed, ensuring high availability and scalability
+                Improved <b>CI/CD</b> reliability and performance by redesigning <b>GitHub Actions</b> workflows, cutting deployment times by 30%.
               </li>
               <li>
-                Worked with Apple on deploying Bodo on <b>EKS clusters</b> with
-                reducing the computation time by 10x
+                Played a key role in preparing and securing <b>SOC2</b> compliance by leading infrastructure hardening, audit readiness, and environment segregation.
+              </li>
+              <li>
+                Led the AWS Marketplace backend integration project, managing contract sign-ups, subscription processing, and working closely with AWS Marketplace teams.
               </li>
               <li>
                 Solely led front-end development using <b>React</b> which
                 included code refactoring for reducing technical debt, developed
                 features and ensured reliability.
-              </li>
-              <li>
-                Reduced the startup time of EC2 instances from 10 minutes to 2
-                minutes by better optimization of shell scripting
               </li>
             </ul>
           </CardContent>
