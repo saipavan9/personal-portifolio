@@ -1,5 +1,7 @@
+import { motion } from "motion/react";
 import Section from "@/components/Section";
 import { experience } from "@/data";
+import { listContainer, listItem } from "@/motionVariants";
 
 export default function ExperienceList() {
   return (
@@ -9,7 +11,13 @@ export default function ExperienceList() {
       command="kubectl get experience"
       comment="# 7+ years across platform engineering, SRE, and infrastructure"
     >
-      <div className="space-y-4">
+      <motion.div
+        className="space-y-4"
+        variants={listContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-60px" }}
+      >
         {/* column header, kubectl-style */}
         <div className="hidden grid-cols-12 gap-4 px-4 font-mono text-xs uppercase tracking-wider text-muted md:grid">
           <span className="col-span-3">name</span>
@@ -19,8 +27,9 @@ export default function ExperienceList() {
         </div>
 
         {experience.map((job) => (
-          <div
+          <motion.div
             key={job.id}
+            variants={listItem}
             className="group rounded-lg border border-iron bg-obsidian/60 p-5 transition-colors hover:border-accent/40"
           >
             <div className="grid gap-2 md:grid-cols-12 md:gap-4">
@@ -39,11 +48,14 @@ export default function ExperienceList() {
                     job.status === "Running" ? "text-ok" : "text-muted"
                   }`}
                 >
-                  <span
-                    className={`h-1.5 w-1.5 rounded-full ${
-                      job.status === "Running" ? "bg-ok" : "bg-muted"
-                    }`}
-                  />
+                  {job.status === "Running" ? (
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok opacity-75" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-ok" />
+                    </span>
+                  ) : (
+                    <span className="h-1.5 w-1.5 rounded-full bg-muted" />
+                  )}
                   {job.status}
                 </span>
               </div>
@@ -78,9 +90,9 @@ export default function ExperienceList() {
                 </span>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </Section>
   );
 }

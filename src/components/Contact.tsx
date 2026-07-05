@@ -1,17 +1,26 @@
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import Section from "@/components/Section";
 import { profile } from "@/data";
+import { listContainer, pillItem } from "@/motionVariants";
+
+type Row = { key: string; value: string; href?: string; copy?: string };
 
 export default function Contact() {
-  const rows: { key: string; value: string; href: string }[] = [
-    { key: "email", value: profile.email, href: `mailto:${profile.email}` },
-    {
-      key: "linkedin",
-      value: profile.linkedin,
-      href: profile.linkedinUrl,
-    },
+  const [copied, setCopied] = useState(false);
+
+  const rows: Row[] = [
+    { key: "email", value: profile.email, copy: profile.email },
+    { key: "linkedin", value: profile.linkedin, href: profile.linkedinUrl },
     { key: "github", value: profile.github, href: profile.githubUrl },
     { key: "resume", value: "SaiPavan_Resume.pdf", href: profile.resume },
   ];
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard?.writeText(text);
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1300);
+  };
 
   return (
     <Section
@@ -27,31 +36,59 @@ export default function Contact() {
           <span className="h-3 w-3 rounded-full bg-[#27c93f]" />
           <span className="ml-2 text-xs text-muted">~/saipavan</span>
         </div>
-        <div className="px-5 py-4 leading-relaxed">
-          <div className="text-muted">{"{"}</div>
+        <motion.div
+          className="px-5 py-4 leading-relaxed"
+          variants={listContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-40px" }}
+        >
+          <motion.div variants={pillItem} className="text-muted">
+            {"{"}
+          </motion.div>
           {rows.map((r, i) => (
-            <div key={r.key} className="pl-4">
+            <motion.div variants={pillItem} key={r.key} className="pl-4">
               <span className="text-accent">"{r.key}"</span>
               <span className="text-muted">: </span>
-              <a
-                href={r.href}
-                target={r.href.startsWith("mailto") ? undefined : "_blank"}
-                rel={
-                  r.href.startsWith("mailto")
-                    ? undefined
-                    : "noopener noreferrer"
-                }
-                className="text-fg underline decoration-iron underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
-              >
-                "{r.value}"
-              </a>
+              {r.href ? (
+                <a
+                  href={r.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-fg underline decoration-iron underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                >
+                  "{r.value}"
+                </a>
+              ) : (
+                <button
+                  onClick={() => handleCopy(r.copy!)}
+                  className="text-fg underline decoration-iron underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                >
+                  "{r.value}"
+                </button>
+              )}
               <span className="text-muted">
                 {i < rows.length - 1 ? "," : ""}
               </span>
-            </div>
+            </motion.div>
           ))}
-          <div className="text-muted">{"}"}</div>
-        </div>
+          <motion.div variants={pillItem} className="text-muted">
+            {"}"}
+          </motion.div>
+          <AnimatePresence>
+            {copied && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                className="pl-4 text-muted"
+              >
+                # copied email to clipboard ✓
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </Section>
   );

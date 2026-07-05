@@ -1,5 +1,7 @@
+import { motion } from "motion/react";
 import Section from "@/components/Section";
 import { projects } from "@/data";
+import { listContainer, listItem } from "@/motionVariants";
 
 export default function ProjectGrid() {
   return (
@@ -9,10 +11,17 @@ export default function ProjectGrid() {
       command="terraform plan ./projects"
       comment="# selected work, infrastructure and platform tooling"
     >
-      <div className="grid gap-5 md:grid-cols-2">
+      <motion.div
+        className="grid gap-5 md:grid-cols-2"
+        variants={listContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-60px" }}
+      >
         {projects.map((p) => (
-          <div
+          <motion.div
             key={p.name}
+            variants={listItem}
             className="flex flex-col rounded-lg border border-iron bg-obsidian/60 p-5 transition-colors hover:border-accent/40"
           >
             <div className="flex items-baseline gap-2 font-mono text-sm">
@@ -35,9 +44,21 @@ export default function ProjectGrid() {
                 </span>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3, delay: 0.15 }}
+        className="mt-6 font-mono text-xs text-muted"
+      >
+        Plan: <span className="text-accent">{projects.length}</span> to add,{" "}
+        <span className="text-fg">0</span> to change,{" "}
+        <span className="text-fg">0</span> to destroy.
+      </motion.p>
     </Section>
   );
 }

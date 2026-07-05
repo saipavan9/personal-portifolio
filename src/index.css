@@ -72,6 +72,11 @@ body {
     animation: none !important;
     opacity: 1;
   }
+  /* Rest the marquee at its start rather than freezing mid-scroll */
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 /* Subtle terminal scanline grain on the page background */

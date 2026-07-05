@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { navItems, profile } from "@/data";
 
 type Command = {
@@ -13,6 +14,8 @@ export default function CommandPalette() {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const prevFocus = useRef<HTMLElement | null>(null);
+  const reduced = useReducedMotion();
 
   const commands: Command[] = useMemo(() => {
     const go = (id: string) => () => {
@@ -77,18 +80,20 @@ export default function CommandPalette() {
 
   useEffect(() => {
     if (open) {
+      prevFocus.current = document.activeElement as HTMLElement;
       setQuery("");
       setActive(0);
       // focus after paint
       requestAnimationFrame(() => inputRef.current?.focus());
+    } else {
+      // restore focus to whatever opened the palette
+      prevFocus.current?.focus?.();
     }
   }, [open]);
 
   useEffect(() => {
     setActive(0);
   }, [query]);
-
-  if (!open) return null;
 
   const runIndex = (i: number) => {
     const cmd = results[i];
@@ -112,18 +117,30 @@ export default function CommandPalette() {
   };
 
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-start justify-center px-4 pt-[12vh]"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Command palette"
-    >
-      <button
-        aria-label="Close command palette"
-        className="absolute inset-0 cursor-default bg-black/60 backdrop-blur-sm"
-        onClick={() => setOpen(false)}
-      />
-      <div className="relative w-full max-w-lg overflow-hidden rounded-xl border border-iron bg-obsidian shadow-2xl shadow-black/60">
+    <AnimatePresence>
+      {open && (
+        <div
+          className="fixed inset-0 z-[100] flex items-start justify-center px-4 pt-[12vh]"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Command palette"
+        >
+          <motion.button
+            aria-label="Close command palette"
+            className="absolute inset-0 cursor-default bg-black/60 backdrop-blur-sm"
+            onClick={() => setOpen(false)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.12 }}
+          />
+          <motion.div
+            initial={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.98, y: -6 }}
+            animate={reduced ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
+            exit={reduced ? { opacity: 0 } : { opacity: 0, scale: 0.98, y: -6 }}
+            transition={{ duration: reduced ? 0.1 : 0.14, ease: "easeOut" }}
+            className="relative w-full max-w-lg overflow-hidden rounded-xl border border-iron bg-obsidian shadow-2xl shadow-black/60"
+          >
         <div className="flex items-center gap-2 border-b border-iron px-4">
           <span className="font-mono text-sm text-accent">❯</span>
           <input
@@ -163,7 +180,9 @@ export default function CommandPalette() {
             </li>
           ))}
         </ul>
-      </div>
-    </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 }
